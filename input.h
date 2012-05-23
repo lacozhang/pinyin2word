@@ -3,21 +3,22 @@
 
 #include<string>
 #include<vector>
-
+#include "converter.h"
 
 class input {
-    public:
-        input();
-        input( std::string raw );
-        ~input();
-		typedef std::vector<std::string>::iterator iterator;
-		input::iterator begin();
-		input::iterator end();
-		void setsrc( std::string raw );
-
-    private:
-		void split( std::string raw );
-        std::vector<std::string>  m_tokens;
+public:
+  input( converter& );
+  input( std::string raw, converter& );
+  ~input();
+  const std::vector<unsigned int>& result();
+  void setsrc( std::string raw );
+  
+private:
+  void split( std::string raw );
+  void convert();
+  std::vector<std::string>  m_tokens;
+  std::vector<unsigned int> m_intoks;
+  converter& m_conv;
 
 };
 

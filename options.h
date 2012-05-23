@@ -2,17 +2,39 @@
 #define __OPTIONS_H__
 #include<string>
 #include<vector>
+#include "converter.h"
+struct MapIdx{
+  MapIdx(){
+	value = -1;
+	next  = -1;
+  }
+  long value;
+  long next;
+};
+struct MyMap{
+  MyMap(){
+	m_free =29999;
+	m_count =0;
+  };
+  void add( unsigned int key, unsigned int value);
+  MapIdx m_element[30000];
+  unsigned int m_free;
+  unsigned int m_count;
+};
 
 class options{
  public:
-  options( std::string raw );
+  options();
   ~options();
-  typedef std::vector<std::string>::const_iterator iterator;
-  options::iterator begin() const;
-  options::iterator end() const;
-  std::string head() const;
+  converter& pingying_c();
+  converter& chinese_c();
+  MyMap& word2ping();
+  void add_new( std::string str );
 
- private:
+private:
+  converter m_pingying;
+  converter m_word;
+  MyMap m_w2p;
   void split( std::string raw );
   std::string m_head;
   std::vector<std::string> m_body;
