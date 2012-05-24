@@ -10,7 +10,7 @@ public:
   input( converter& );
   input( std::string raw, converter& );
   ~input();
-  const std::vector<unsigned int>& result();
+  std::vector<unsigned int>& result();
   void setsrc( std::string raw );
   
 private:

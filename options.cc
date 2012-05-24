@@ -48,6 +48,10 @@ MyMap& options::word2ping(){
   return m_w2p;
 }
 
+MyMap& options::ping2word(){
+  return m_p2w;
+}
+
 void options::add_new( std::string str ){
 #ifdef DEBUG
   static int s_cnt=0;
@@ -57,6 +61,7 @@ void options::add_new( std::string str ){
   for( int i=0; i<m_body.size(); ++i){
 	unsigned int wordidx = m_word.str2idx( m_body[i] );
 	m_w2p.add( wordidx, hidx );
+	m_p2w.add( hidx, wordidx );
 #ifdef DEBUG
 	s_cnt++;
 	std::cout << "s_cnt\t" << s_cnt << std::endl;

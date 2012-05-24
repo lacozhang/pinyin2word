@@ -29,12 +29,14 @@ class options{
   converter& pingying_c();
   converter& chinese_c();
   MyMap& word2ping();
+  MyMap& ping2word();
   void add_new( std::string str );
 
 private:
   converter m_pingying;
   converter m_word;
   MyMap m_w2p;
+  MyMap m_p2w;
   void split( std::string raw );
   std::string m_head;
   std::vector<std::string> m_body;

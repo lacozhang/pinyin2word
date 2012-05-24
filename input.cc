@@ -58,6 +58,6 @@ void input::setsrc( std::string raw ){
   convert();
 }
 
-const std::vector<unsigned int>& input::result(){
+std::vector<unsigned int>& input::result(){
   return m_intoks;
 }
