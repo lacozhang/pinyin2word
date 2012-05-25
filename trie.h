@@ -57,6 +57,7 @@ public:
   ~trie();
   void add(const std::vector<unsigned int>& key,const std::string& value );
   bool query(const std::vector<unsigned int>& key, dnode& data );
+  bool query(const std::vector<unsigned int>& key );
 private:
   node m_root;
 };

@@ -172,3 +172,20 @@ trie::trie(){
 
 trie::~trie(){
 }
+
+
+bool trie::query( const std::vector<unsigned int>& key ){
+  node* ptr = &m_root;
+  int i;
+  for(i=0; i<key.size() && ptr; ++i){
+	ptr = ptr->query( key[i] );
+  }
+
+  if( i < key.size() || !ptr ){
+	return false;
+  }
+  if( ! ptr->data() ){
+	return false;
+  }
+  return true;
+}
