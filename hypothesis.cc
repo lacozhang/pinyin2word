@@ -70,10 +70,11 @@ void hypothesis::setexpand(){
   m_bexpand = true;
 }
 
-void hypothesis::resetexpand(){
-  m_bexpand = false;
-}
 
 bool hypothesis::expand(){
   return m_bexpand;
+}
+
+bitset<64> hypothesis::cover() const {
+  return m_cover;
 }

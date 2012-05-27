@@ -16,8 +16,8 @@ class hypothesis{
   std::string getstr();
   int nextphrase();
   void setexpand();
-  void resetexpand();
   bool expand();
+  bitset<64> cover() const;
 
  private:
   bool stest();
