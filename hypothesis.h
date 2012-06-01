@@ -17,17 +17,25 @@ class hypothesis{
   int nextphrase();
   void setexpand();
   bool expand();
-  bitset<64> cover() const;
+  std::bitset<64> cover() const;
+  void setscore( float s ) {
+	m_score = s;
+  }
+
+  float getscore( ) const {
+	return m_score;
+  }
 
  private:
   bool stest();
   bool m_bexpand;
   std::string m_stropt;
-  bitset<64> m_cover;
+  std::bitset<64> m_cover;
   int m_end;
   hypothesis* m_parent;
+  float m_score;
 
 };
 
 
-#endif __HYPOTHESIS_H__
+#endif //__HYPOTHESIS_H__

@@ -8,7 +8,8 @@ class converter {
  public:
   converter();
   ~converter();
-  unsigned int str2idx( std::string pingyin );
+  unsigned int str2idx( std::string pinyin );
+  unsigned int str2idx_c( std::string pinyin );
   std::string idx2str( unsigned int );
   unsigned int count() const;
   typedef std::map<unsigned int, std::string>::const_iterator iterator;

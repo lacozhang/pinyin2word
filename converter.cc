@@ -18,6 +18,9 @@ converter::~converter(){
 }
 
 void converter::add_new( std::string str ){
+
+  m_curidx++;
+
   //add to string to idx
   std::pair<std::map<std::string, unsigned int>::iterator, bool> ret;
   ret = m_str2idx.insert( std::pair<std::string, unsigned int>(str, m_curidx) );
@@ -35,7 +38,6 @@ void converter::add_new( std::string str ){
 	exit(1);
   }
 
-  m_curidx++;
 
 #ifdef DEBUG
   std::cout << "converter::add_new\tnew string : " << str << std::endl;
@@ -50,6 +52,14 @@ unsigned int converter::str2idx( std::string pingying ){
 	add_new( pingying );
   }
   return m_str2idx[pingying];
+}
+
+unsigned int converter::str2idx_c( std::string pinyin ){
+  if( m_str2idx.count( pinyin ) ){
+	return m_str2idx[pinyin];
+  } else {
+	return 0;
+  }
 }
 
 std::string converter::idx2str( unsigned int idx){

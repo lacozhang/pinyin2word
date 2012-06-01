@@ -1,5 +1,6 @@
 #include "hypothesis.h"
 #include<iostream>
+#include<cstdlib>
 
 
 hypothesis::hypothesis(){
@@ -44,9 +45,10 @@ void hypothesis::setphrases( phrase& p ){
 }
 
 std::string hypothesis::getstr(){
-  std::string tmp;
+  std::string tmp="";
   if( m_parent != NULL )
-	tmp += m_parent->getstr();
+	tmp = m_parent->getstr();
+  tmp += " ";
   return tmp + m_stropt;
 }
 
@@ -75,6 +77,6 @@ bool hypothesis::expand(){
   return m_bexpand;
 }
 
-bitset<64> hypothesis::cover() const {
+std::bitset<64> hypothesis::cover() const {
   return m_cover;
 }

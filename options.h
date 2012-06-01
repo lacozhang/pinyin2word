@@ -32,7 +32,7 @@ class options{
   MyMap& ping2word();
   void add_new( std::string str );
 
-private:
+ private:
   converter m_pingying;
   converter m_word;
   MyMap m_w2p;
