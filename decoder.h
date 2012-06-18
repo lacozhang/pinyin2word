@@ -1,3 +1,4 @@
+//-*C++*-
 #ifndef __DECODER_H__
 #define __DECODER_H__
 #include "hypothesis.h"
