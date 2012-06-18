@@ -1,2 +1,17 @@
+<<<<<<< HEAD
 test.*
 *.o
+=======
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+>>>>>>> 8e14a52243d35aa4024d2ffcddf7d72f47899869
