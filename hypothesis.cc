@@ -5,78 +5,95 @@
 
 hypothesis::hypothesis(){
   
-  m_bexpand = false;
-  m_stropt = "";
-  for( int i=0; i<64; ++i ){
-	m_cover[i] = false;
-  }
-
-  m_end = -1;
-
-  m_parent = NULL;
+		m_bexpand = false;
+		m_stropt.clear();
+		m_cover.reset();
+		m_end = -1;
+		m_parent.clear();
+		m_score = 0;
+		m_history = NULL;
 }
 
 hypothesis::~hypothesis(){
+
 }
 
 int hypothesis::len(){
-  return m_end + 1;
+		return m_end + 1;
 }
 
 void hypothesis::setparent( hypothesis* p ){
-  if( m_parent ){
-	std::cerr << "hypothesis::setparent reset parent\n";
-  }
-  m_parent = p;
-  for( int i=0; i < p->len(); ++i ){
-	m_cover[i] = true;
-  }
+		
+		list<hypothesis*>::iterator iter = m_parent.begin();
+		while( iter != m_parent.end() ){
+				if( *iter == p )
+						break;
+				iter++;
+		}
+		if( iter == m_parent.end() ){
+				m_parent.push_back( p );
+		}
+
+		if( !m_history ){
+				m_history = p;
+		}
 }
 
-void hypothesis::settrans( std::string opt ){
-  m_stropt = opt;
+void hypothesis::settrans( std::string& opt ){
+		m_stropt = opt;
 }
 
 void hypothesis::setphrases( phrase& p ){
-  m_end = p.end;
-  for( int i=p.start; i<=p.end; ++i ){
-	m_cover[i] = true;
-  }
+		m_end = p.end;
+		for( int i=p.start; i<=p.end; ++i ){
+				m_cover.set(i);
+		}
 }
 
-std::string hypothesis::getstr(){
-  std::string tmp="";
-  if( m_parent != NULL )
-	tmp = m_parent->getstr();
-  tmp += " ";
-  return tmp + m_stropt;
+void GetOpt(std::string& ret){
+		ret = m_stropt;
+}
+
+std::string hypothesis::GetHistory(){
+		
+		std::string h="";
+		if( m_history ){
+				std::string tmp;
+				m_history->GetOpt(tmp);
+				h += tmp;
+				if( m_history->m_history ){
+						m_history->m_history->GetOpt(tmp);
+						h += tmp;
+				}
+		}
+		return h;
 }
 
 bool hypothesis::stest(){
-  bool ret = true;
-  for( int i=0; i<=m_end; ++i ){
-	ret = m_cover[i];
-  }
-  return ret;
+		bool ret = true;
+		for( int i=0; i<=m_end; ++i ){
+				ret = m_cover[i];
+		}
+		return ret;
 }
 
 int hypothesis::nextphrase(){
-  if( !stest() ){
-	std::cerr << "hypothesis::nextphrase error \n";
-	exit(1);
-  }
-  return m_end + 1;
+		if( !stest() ){
+				std::cerr << "hypothesis::nextphrase error \n";
+				abort();
+		}
+		return m_end + 1;
 }
 
 void hypothesis::setexpand(){
-  m_bexpand = true;
+		m_bexpand = true;
 }
 
 
 bool hypothesis::expand(){
-  return m_bexpand;
+		return m_bexpand;
 }
 
 std::bitset<64> hypothesis::cover() const {
-  return m_cover;
+		return m_cover;
 }
