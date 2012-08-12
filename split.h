@@ -29,7 +29,7 @@ private:
 
 class spliter{
 public:
-		bool operator()( const std::vector<unsigned int>& src, trie& tree, MyMap& p2w, ptable& out );
+		bool operator()( const std::vector<unsigned int>& src, trie& tree, ptable& out );
 };
 
 #endif

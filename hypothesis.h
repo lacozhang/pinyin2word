@@ -14,8 +14,10 @@ public:
 		~hypothesis();
 		int len();
 		void setparent( hypothesis* );
-		void settrans( std::string );
+		void settrans( std::string& );
 		void GetOpt(std::string& );
+		int  GetDepth();
+		std::string FullPath();
 		void setphrases( phrase& );
 		std::string GetHistory();
 		int nextphrase();
@@ -36,7 +38,7 @@ private:
 		std::string m_stropt;
 		std::bitset<64> m_cover;
 		int m_end;
-		list<hypothesis*> m_parent;
+		std::list<hypothesis*> m_parent;
 		hypothesis* m_history;
 		double m_score;
 

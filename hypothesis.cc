@@ -24,7 +24,7 @@ int hypothesis::len(){
 
 void hypothesis::setparent( hypothesis* p ){
 		
-		list<hypothesis*>::iterator iter = m_parent.begin();
+		std::list<hypothesis*>::iterator iter = m_parent.begin();
 		while( iter != m_parent.end() ){
 				if( *iter == p )
 						break;
@@ -50,8 +50,15 @@ void hypothesis::setphrases( phrase& p ){
 		}
 }
 
-void GetOpt(std::string& ret){
+void hypothesis::GetOpt(std::string& ret){
 		ret = m_stropt;
+}
+
+int hypothesis::GetDepth(){
+		if( !m_history )
+				return 1;
+		else
+				return 1 + m_history->GetDepth();
 }
 
 std::string hypothesis::GetHistory(){
@@ -60,13 +67,22 @@ std::string hypothesis::GetHistory(){
 		if( m_history ){
 				std::string tmp;
 				m_history->GetOpt(tmp);
-				h += tmp;
+				h = tmp + h;
 				if( m_history->m_history ){
 						m_history->m_history->GetOpt(tmp);
-						h += tmp;
+						h = tmp + " " + h;
 				}
 		}
 		return h;
+}
+
+std::string hypothesis::FullPath(){
+		if( !m_history )
+				return m_stropt;
+		else {
+				std::string his = m_history->FullPath();
+				return his + " " + m_stropt;
+		}
 }
 
 bool hypothesis::stest(){

@@ -74,7 +74,7 @@ void MyMap::add( unsigned int key, unsigned int value ){
 		if( (m_element[key]).value == -1 ){
 				(m_element[key]).value = value;
 		} else {
-				if( (m_element[m_free]).value != -1 )
+				if( (m_element[m_free]).value != -1 ){
 						std::cerr << "MyMap::add : error" << std::endl;
 						std::cerr << "count : " << m_count << std::endl;
 						std::cerr << "m_free : "<< m_free << std::endl;
@@ -85,7 +85,7 @@ void MyMap::add( unsigned int key, unsigned int value ){
 				(m_element[m_free]).value = value;
 				m_free--;
 		}
-		m_count ++;
+		m_count++;
 #ifdef DEBUG
 		std::cout << "MyMap::add : m_count" << m_count << std::endl;
 #endif

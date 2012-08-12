@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 test.*
 *.o
+*.exe
 =======
 # Compiled Object files
 *.slo
@@ -14,4 +14,3 @@ test.*
 *.lai
 *.la
 *.a
->>>>>>> 8e14a52243d35aa4024d2ffcddf7d72f47899869
